@@ -1,11 +1,10 @@
 <?php
 
-namespace Webkul\MercadoSolidario\Providers;
+namespace Webkul\MercadoSolidarioTema\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Webkul\MercadoSolidario\Console\Commands\SeedThemeCustomizations;
 
-class MercadoSolidarioServiceProvider extends ServiceProvider
+class MercadoSolidarioTemaServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap services.
@@ -26,13 +25,6 @@ class MercadoSolidarioServiceProvider extends ServiceProvider
 
         // Carregar as visualizações do tema
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'mercado-solidario');
-
-        // Registrar comandos Artisan
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                SeedThemeCustomizations::class,
-            ]);
-        }
     }
 
     /**

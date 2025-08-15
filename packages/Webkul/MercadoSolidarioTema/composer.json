@@ -1,5 +1,5 @@
 {
-    "name": "webkul/mercado-solidario",
+    "name": "webkul/mercado-solidario-tema",
     "description": "Tema personalizado Mercado Solidário para projetos de caridade da igreja",
     "type": "library",
     "license": "MIT",
@@ -14,13 +14,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Webkul\\MercadoSolidario\\": "src/"
+            "Webkul\\MercadoSolidarioTema\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Webkul\\MercadoSolidario\\Providers\\MercadoSolidarioServiceProvider"
+                "Webkul\\MercadoSolidarioTema\\Providers\\MercadoSolidarioTemaServiceProvider"
             ]
         }
     }
