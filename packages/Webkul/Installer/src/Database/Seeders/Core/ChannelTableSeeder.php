@@ -29,7 +29,7 @@ class ChannelTableSeeder extends Seeder
             [
                 'id'                => 1,
                 'code'              => 'default',
-                'theme'             => 'default',
+                'theme'             => 'mercado-solidario-tema',
                 'hostname'          => config('app.url'),
                 'root_category_id'  => 1,
                 'default_locale_id' => 1,
