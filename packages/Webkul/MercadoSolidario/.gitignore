@@ -8,6 +8,8 @@ yarn-error.log*
 public/themes/shop/mercado-solidario/build/
 public/themes/shop/mercado-solidario/images/
 
+
+
 # Arquivos de ambiente
 .env
 .env.local
