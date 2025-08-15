@@ -10,7 +10,7 @@ return [
     |
     */
 
-    'shop-default' => 'default',
+    'shop-default' => 'mercado-solidario-tema',
 
     'shop' => [
         'default' => [
@@ -25,13 +25,13 @@ return [
             ],
         ],
 
-        'mercado-solidario' => [
-            'name'        => 'Mercado Solidário',
+        'mercado-solidario-tema' => [
+            'name'        => 'Mercado Solidário Tema',
             'assets_path' => 'public/themes/shop/mercado-solidario',
-            'views_path'  => 'resources/themes/mercado-solidario/views',
+            'views_path'  => 'resources/themes/mercado-solidario-tema/views',
 
             'vite'        => [
-                'hot_file'                 => 'mercado-solidario-vite.hot',
+                'hot_file'                 => 'mercado-solidario-tema-vite.hot',
                 'build_directory'          => 'themes/shop/mercado-solidario/build',
                 'package_assets_directory' => 'src/Resources/assets',
             ],

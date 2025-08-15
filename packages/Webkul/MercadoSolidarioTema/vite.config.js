@@ -5,37 +5,29 @@ import path from "path";
 
 export default defineConfig(({ mode }) => {
     const envDir = "../../../";
-
     Object.assign(process.env, loadEnv(mode, envDir));
 
     return {
-        build: {
-            emptyOutDir: true,
-        },
-
+        build: { emptyOutDir: true },
         envDir,
-
-        server: {
-            host: process.env.VITE_HOST || "localhost",
-            port: process.env.VITE_PORT || 5174, // Porta diferente para evitar conflitos
-            cors: true,
+        server: { 
+            host: process.env.VITE_HOST || "localhost", 
+            port: process.env.VITE_PORT || 5174, 
+            cors: true 
         },
-
         plugins: [
             vue(),
-
             laravel({
-                hotFile: "../../../public/mercado-solidario-vite.hot",
+                hotFile: "../../../public/mercado-solidario-tema-vite.hot",
                 publicDirectory: "../../../public",
                 buildDirectory: "themes/shop/mercado-solidario/build",
                 input: [
                     "src/Resources/assets/css/app.css",
-                    "src/Resources/assets/js/app.js",
+                    "src/Resources/assets/js/app.js"
                 ],
                 refresh: true,
             }),
         ],
-
         experimental: {
             renderBuiltUrl(filename, { hostId, hostType, type }) {
                 if (hostType === "css") {
@@ -43,13 +35,12 @@ export default defineConfig(({ mode }) => {
                 }
             },
         },
-
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, './src'),
                 '@assets': path.resolve(__dirname, './src/Resources/assets'),
-                '@components': path.resolve(__dirname, './src/Resources/views/components'),
-            },
+                '@components': path.resolve(__dirname, './src/Resources/views/components')
+            }
         },
     };
 });
