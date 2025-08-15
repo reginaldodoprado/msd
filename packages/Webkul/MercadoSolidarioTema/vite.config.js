@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
             laravel({
                 hotFile: "../../../public/mercado-solidario-tema-vite.hot",
                 publicDirectory: "../../../public",
-                buildDirectory: "themes/shop/mercado-solidario/build",
+                buildDirectory: "themes/shop/mercado-solidario-tema/build", // ← CORRIGIDO AQUI
                 input: [
                     "src/Resources/assets/css/app.css",
                     "src/Resources/assets/js/app.js"
@@ -28,13 +28,6 @@ export default defineConfig(({ mode }) => {
                 refresh: true,
             }),
         ],
-        experimental: {
-            renderBuiltUrl(filename, { hostId, hostType, type }) {
-                if (hostType === "css") {
-                    return path.basename(filename);
-                }
-            },
-        },
         resolve: {
             alias: {
                 '@': path.resolve(__dirname, './src'),

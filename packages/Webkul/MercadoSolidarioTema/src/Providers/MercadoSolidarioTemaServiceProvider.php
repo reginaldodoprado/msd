@@ -15,16 +15,16 @@ class MercadoSolidarioTemaServiceProvider extends ServiceProvider
     {
         // Publicar as visualizações do tema
         $this->publishes([
-            __DIR__.'/../Resources/views' => resource_path('themes/mercado-solidario/views'),
-        ], 'mercado-solidario-views');
+            __DIR__.'/../Resources/views' => resource_path('themes/mercado-solidario-tema/views'),
+        ], 'mercado-solidario-tema-views');
 
         // Publicar os assets do tema
         $this->publishes([
-            __DIR__.'/../Resources/assets' => public_path('themes/shop/mercado-solidario'),
-        ], 'mercado-solidario-assets');
+            __DIR__.'/../Resources/assets' => public_path('themes/shop/mercado-solidario-tema'),
+        ], 'mercado-solidario-tema-assets');
 
         // Carregar as visualizações do tema
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'mercado-solidario');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'mercado-solidario-tema');
     }
 
     /**

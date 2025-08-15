@@ -1,6 +1,0 @@
-# Arquivos compilados do tema
-build/
-images/
-
-# Manter apenas este arquivo .gitignore
-!.gitignore

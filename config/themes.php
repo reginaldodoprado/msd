@@ -32,7 +32,7 @@ return [
 
             'vite'        => [
                 'hot_file'                 => 'mercado-solidario-tema-vite.hot',
-                'build_directory'          => 'themes/shop/mercado-solidario/build',
+                'build_directory'          => 'themes/shop/mercado-solidario-tema/build',
                 'package_assets_directory' => 'src/Resources/assets',
             ],
         ],
