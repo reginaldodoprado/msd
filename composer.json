@@ -96,7 +96,8 @@
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Webkul\\User\\": "packages/Webkul/User/src",
-        "Webkul\\MercadoSolidario\\": "packages/Webkul/MercadoSolidario/src"
+          
+            "Webkul\\MercadoSolidarioTema\\": "packages/Webkul/MercadoSolidarioTema/src"
         }
     },
     "autoload-dev": {
