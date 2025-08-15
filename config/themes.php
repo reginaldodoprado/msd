@@ -24,6 +24,18 @@ return [
                 'package_assets_directory' => 'src/Resources/assets',
             ],
         ],
+
+        'mercado-solidario' => [
+            'name'        => 'Mercado Solidário',
+            'assets_path' => 'public/themes/shop/mercado-solidario',
+            'views_path'  => 'resources/themes/mercado-solidario/views',
+
+            'vite'        => [
+                'hot_file'                 => 'mercado-solidario-vite.hot',
+                'build_directory'          => 'themes/shop/mercado-solidario/build',
+                'package_assets_directory' => 'src/Resources/assets',
+            ],
+        ],
     ],
 
     /*
