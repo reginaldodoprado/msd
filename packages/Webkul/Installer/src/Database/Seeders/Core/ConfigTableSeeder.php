@@ -179,5 +179,25 @@ class ConfigTableSeeder extends Seeder
             'created_at'   => $now,
             'updated_at'   => $now,
         ]);
+
+        DB::table('core_config')->insert([
+            'id'           => 17,
+            'code'         => 'customer.settings.newsletter.subscription',
+            'value'        => '0',
+            'channel_code' => null,
+            'locale_code'  => null,
+            'created_at'   => $now,
+            'updated_at'   => $now,
+        ]);
+
+        DB::table('core_config')->insert([
+            'id'           => 18,
+            'code'         => 'customer.settings.create_new_account_options.news_letter',
+            'value'        => '0',
+            'channel_code' => null,
+            'locale_code'  => null,
+            'created_at'   => $now,
+            'updated_at'   => $now,
+        ]);
     }
 }
