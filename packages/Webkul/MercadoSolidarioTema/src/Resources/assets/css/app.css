@@ -10,6 +10,324 @@
     font-display: block;
 }
 
+/* ===== TEMA MERCADO SOLIDÁRIO ===== */
+:root {
+    /* Cores principais da loja */
+    --ms-primary: #fbbf24;           /* Amarelo dourado principal */
+    --ms-secondary: rgb(21, 97, 111); /* Azul esverdeado secundário */
+    
+    /* Versões com opacidade para não ficar muito forte */
+    --ms-primary-light: rgba(251, 191, 36, 0.1);      /* Amarelo com 10% opacidade */
+    --ms-primary-medium: rgba(251, 191, 36, 0.3);     /* Amarelo com 30% opacidade */
+    --ms-primary-soft: rgba(251, 191, 36, 0.6);      /* Amarelo com 60% opacidade */
+    
+    --ms-secondary-light: rgba(21, 97, 111, 0.1);     /* Azul com 10% opacidade */
+    --ms-secondary-medium: rgba(21, 97, 111, 0.3);    /* Azul com 30% opacidade */
+    --ms-secondary-soft: rgba(21, 97, 111, 0.6);     /* Azul com 60% opacidade */
+    
+    /* Cores complementares */
+    --ms-accent: #f59e0b;            /* Amarelo mais escuro para destaque */
+    --ms-success: #10b981;           /* Verde para sucesso */
+    --ms-info: #3b82f6;              /* Azul para informação */
+    --ms-warning: #f59e0b;           /* Amarelo para aviso */
+    --ms-danger: #ef4444;            /* Vermelho para perigo */
+    --ms-light: #f8fafc;             /* Cinza muito claro */
+    --ms-dark: #1e293b;              /* Cinza escuro */
+    --ms-white: #ffffff;             /* Branco */
+    --ms-muted: #64748b;             /* Cinza neutro */
+    
+    /* Cores de fundo suaves */
+    --ms-bg-primary: rgba(251, 191, 36, 0.08);        /* Fundo amarelo muito suave */
+    --ms-bg-secondary: rgba(21, 97, 111, 0.08);       /* Fundo azul muito suave */
+    --ms-bg-gradient: rgba(251, 191, 36, 0.05);       /* Fundo gradiente suave */
+}
+
+/* ===== SOBRESCREVER CORES PADRÃO DO BOOTSTRAP ===== */
+
+/* Inputs e Form Controls */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus,
+.form-range:focus {
+    border-color: var(--ms-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(251, 191, 36, 0.25) !important;
+    outline: 0 !important;
+}
+
+/* Input Group */
+.input-group-text {
+    border-color: var(--ms-primary-light) !important;
+}
+
+.input-group .form-control:focus + .input-group-text,
+.input-group .form-control:focus ~ .input-group-text {
+    border-color: var(--ms-primary) !important;
+}
+
+/* Dropdowns */
+.dropdown-item:focus,
+.dropdown-item:hover {
+    background-color: var(--ms-primary-light) !important;
+    color: var(--ms-primary) !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: var(--ms-primary) !important;
+    color: var(--ms-white) !important;
+}
+
+/* Accordion */
+.accordion-button:not(.collapsed) {
+    background-color: var(--ms-primary-light) !important;
+    color: var(--ms-primary) !important;
+}
+
+.accordion-button:focus {
+    border-color: var(--ms-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(251, 191, 36, 0.25) !important;
+}
+
+/* Buttons */
+.btn:focus,
+.btn-close:focus {
+    box-shadow: 0 0 0 0.25rem rgba(251, 191, 36, 0.25) !important;
+}
+
+/* Offcanvas */
+.offcanvas-header .btn-close:focus {
+    box-shadow: 0 0 0 0.25rem rgba(251, 191, 36, 0.25) !important;
+}
+
+/* ===== CLASSES CSS PERSONALIZADAS ===== */
+
+/* Cores de fundo personalizadas */
+.bg-ms-primary {
+    background-color: var(--ms-primary) !important;
+}
+
+.bg-ms-secondary {
+    background-color: var(--ms-secondary) !important;
+}
+
+.bg-ms-primary-light {
+    background-color: var(--ms-primary-light) !important;
+}
+
+.bg-ms-secondary-light {
+    background-color: var(--ms-secondary-light) !important;
+}
+
+.bg-ms-primary-medium {
+    background-color: var(--ms-primary-medium) !important;
+}
+
+.bg-ms-secondary-medium {
+    background-color: var(--ms-secondary-medium) !important;
+}
+
+.bg-ms-primary-soft {
+    background-color: var(--ms-primary-soft) !important;
+}
+
+.bg-ms-secondary-soft {
+    background-color: var(--ms-secondary-soft) !important;
+}
+
+.bg-ms-success {
+    background-color: var(--ms-success) !important;
+}
+
+.bg-ms-info {
+    background-color: var(--ms-info) !important;
+}
+
+.bg-ms-light {
+    background-color: var(--ms-light) !important;
+}
+
+/* Gradientes personalizados com as cores da loja */
+.bg-gradient-ms {
+    background: linear-gradient(135deg, var(--ms-primary) 0%, var(--ms-secondary) 100%) !important;
+}
+
+.bg-gradient-ms-subtle {
+    background: linear-gradient(135deg, var(--ms-bg-primary) 0%, var(--ms-bg-secondary) 100%) !important;
+}
+
+.bg-gradient-ms-soft {
+    background: linear-gradient(135deg, var(--ms-primary-light) 0%, var(--ms-secondary-light) 100%) !important;
+}
+
+.bg-gradient-ms-warm {
+    background: linear-gradient(135deg, var(--ms-primary-medium) 0%, var(--ms-secondary-medium) 100%) !important;
+}
+
+/* Cores de texto personalizadas */
+.text-ms-primary {
+    color: var(--ms-primary) !important;
+}
+
+.text-ms-secondary {
+    color: var(--ms-secondary) !important;
+}
+
+.text-ms-primary-soft {
+    color: var(--ms-primary-soft) !important;
+}
+
+.text-ms-secondary-soft {
+    color: var(--ms-secondary-soft) !important;
+}
+
+.text-ms-success {
+    color: var(--ms-success) !important;
+}
+
+.text-ms-muted {
+    color: var(--ms-muted) !important;
+}
+
+/* Bordas personalizadas */
+.border-ms-primary {
+    border-color: var(--ms-primary) !important;
+}
+
+.border-ms-secondary {
+    border-color: var(--ms-secondary) !important;
+}
+
+.border-ms-primary-light {
+    border-color: var(--ms-primary-light) !important;
+}
+
+.border-ms-secondary-light {
+    border-color: var(--ms-secondary-light) !important;
+}
+
+.border-ms-primary-medium {
+    border-color: var(--ms-primary-medium) !important;
+}
+
+.border-ms-secondary-medium {
+    border-color: var(--ms-secondary-medium) !important;
+}
+
+.border-ms-success {
+    border-color: var(--ms-success) !important;
+}
+
+.border-ms-subtle {
+    border-color: var(--ms-primary-light) !important;
+}
+
+/* Botões personalizados */
+.btn-ms-primary {
+    background-color: var(--ms-primary) !important;
+    border-color: var(--ms-primary) !important;
+    color: var(--ms-white) !important;
+}
+
+.btn-ms-primary:hover {
+    background-color: var(--ms-accent) !important;
+    border-color: var(--ms-accent) !important;
+}
+
+.btn-ms-secondary {
+    background-color: var(--ms-secondary) !important;
+    border-color: var(--ms-secondary) !important;
+    color: var(--ms-white) !important;
+}
+
+.btn-ms-secondary:hover {
+    background-color: rgba(21, 97, 111, 0.8) !important;
+    border-color: rgba(21, 97, 111, 0.8) !important;
+}
+
+.btn-ms-outline-primary {
+    color: var(--ms-primary) !important;
+    border-color: var(--ms-primary) !important;
+    background-color: transparent !important;
+}
+
+.btn-ms-outline-primary:hover {
+    background-color: var(--ms-primary) !important;
+    color: var(--ms-white) !important;
+}
+
+.btn-ms-outline-secondary {
+    color: var(--ms-secondary) !important;
+    border-color: var(--ms-secondary) !important;
+    background-color: transparent !important;
+}
+
+.btn-ms-outline-secondary:hover {
+    background-color: var(--ms-secondary) !important;
+    color: var(--ms-white) !important;
+}
+
+/* Links personalizados */
+.link-ms-primary {
+    color: var(--ms-primary) !important;
+    text-decoration: none !important;
+}
+
+.link-ms-primary:hover {
+    color: var(--ms-accent) !important;
+    text-decoration: underline !important;
+}
+
+.link-ms-secondary {
+    color: var(--ms-secondary) !important;
+    text-decoration: none !important;
+}
+
+.link-ms-secondary:hover {
+    color: rgba(21, 97, 111, 0.8) !important;
+    text-decoration: underline !important;
+}
+
+/* Hover effects */
+.hover-bg-ms-light:hover {
+    background-color: var(--ms-primary-light) !important;
+}
+
+.hover-bg-ms-secondary-light:hover {
+    background-color: var(--ms-secondary-light) !important;
+}
+
+.hover-text-ms-primary:hover {
+    color: var(--ms-primary) !important;
+}
+
+.hover-text-ms-secondary:hover {
+    color: var(--ms-secondary) !important;
+}
+
+/* Transições suaves */
+.transition-ms {
+    transition: all 0.3s ease !important;
+}
+
+/* Sombras personalizadas com as cores da loja */
+.shadow-ms {
+    box-shadow: 0 0.125rem 0.25rem rgba(251, 191, 36, 0.15) !important;
+}
+
+.shadow-ms-lg {
+    box-shadow: 0 0.5rem 1rem rgba(251, 191, 36, 0.2) !important;
+}
+
+.shadow-ms-secondary {
+    box-shadow: 0 0.125rem 0.25rem rgba(21, 97, 111, 0.15) !important;
+}
+
+.shadow-ms-secondary-lg {
+    box-shadow: 0 0.5rem 1rem rgba(21, 97, 111, 0.2) !important;
+}
+
+/* ===== ESTILOS EXISTENTES ===== */
+
 img.lazy {
   visibility: hidden;
 }
@@ -46,7 +364,6 @@ img.lazy {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
-
 
     .icon-gdpr-safe:before {
         content: "\e84f";
