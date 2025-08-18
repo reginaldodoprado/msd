@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(BagistoDatabaseSeeder::class);
+        $this->call(ThemeCustomizationsTableSeeder::class);
+        $this->call(ThemeCustomizationTranslationsTableSeeder::class);
     }
 }

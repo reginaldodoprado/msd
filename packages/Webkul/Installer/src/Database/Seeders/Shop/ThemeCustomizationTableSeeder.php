@@ -42,6 +42,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 1,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -51,6 +52,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 2,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -60,6 +62,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 3,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -69,6 +72,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 4,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -78,6 +82,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 5,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -87,6 +92,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 6,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -96,6 +102,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 7,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -105,6 +112,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 8,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -114,6 +122,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 9,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -123,6 +132,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 10,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -132,6 +142,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 11,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
@@ -141,6 +152,7 @@ class ThemeCustomizationTableSeeder extends Seeder
                     'sort_order' => 12,
                     'status'     => 0,
                     'channel_id' => 1,
+                    'theme_code' => 'default',
                     'created_at' => $now,
                     'updated_at' => $now,
                 ], [
