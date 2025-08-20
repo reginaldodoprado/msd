@@ -44,4 +44,5 @@ return [
     Webkul\Theme\Providers\ThemeServiceProvider::class,
     Webkul\User\Providers\UserServiceProvider::class,
     Webkul\MercadoSolidarioTema\Providers\MercadoSolidarioTemaServiceProvider::class,
+    Ds\AssasIntegration\Providers\AssasIntegrationServiceProvider::class,
 ];

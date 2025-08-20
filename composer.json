@@ -97,7 +97,7 @@
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Webkul\\User\\": "packages/Webkul/User/src",
-          
+            "Ds\\AssasIntegration\\": "packages/Webkul/AssasIntegration/src",
             "Webkul\\MercadoSolidarioTema\\": "packages/Webkul/MercadoSolidarioTema/src"
         }
     },
