@@ -52,17 +52,19 @@ class VatValidator
      */
     public function validate(string $vatNumber, ?string $formCountry = null): bool
     {
+        // Se não há VAT number, retorna true (não é obrigatório para todos os países)
+        if (empty($vatNumber)) {
+            return true;
+        }
+
         $vatNumber = $this->vatCleaner($vatNumber);
 
         [$country, $number] = $this->splitVat($vatNumber);
 
+        // Se o país não está na lista de países com VAT, retorna true
         if (! isset(self::$pattern_expression[$country])) {
-            if (! $formCountry) {
-                return false;
-            }
-
-            $country = $formCountry;
-            $number = $vatNumber;
+            // Para países como Brasil que não usam VAT, retorna true
+            return true;
         }
 
         return preg_match('/^'.self::$pattern_expression[$country].'$/', $number) > 0;

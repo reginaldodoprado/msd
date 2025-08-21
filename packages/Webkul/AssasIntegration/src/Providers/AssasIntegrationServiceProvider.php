@@ -38,6 +38,7 @@ use Ds\AssasIntegration\Services\ConsultaSerasaService;
 use Ds\AssasIntegration\Services\EnvioDeDocumentoWhiteLabelService;
 use Ds\AssasIntegration\Services\AsaasService;
 
+
 class AssasIntegrationServiceProvider extends ServiceProvider
 {
     /**
@@ -277,5 +278,16 @@ class AssasIntegrationServiceProvider extends ServiceProvider
 
         // Carregar traduções
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'assas-integration');
+
+        // Mesclar configurações do método de pagamento
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/paymentmethods.php',
+            'payment_methods'
+        );
+
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/system.php',
+            'core'
+        );
     }
 }

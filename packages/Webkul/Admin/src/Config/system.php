@@ -1789,7 +1789,7 @@ return [
         'key'    => 'sales.payment_methods.cashondelivery',
         'name'   => 'admin::app.configuration.index.sales.payment-methods.cash-on-delivery',
         'info'   => 'admin::app.configuration.index.sales.payment-methods.cash-on-delivery-info',
-        'sort'   => 1,
+        'sort'   => 3,
         'fields' => [
             [
                 'name'          => 'title',
@@ -1894,7 +1894,7 @@ return [
         'key'    => 'sales.payment_methods.moneytransfer',
         'name'   => 'admin::app.configuration.index.sales.payment-methods.money-transfer',
         'info'   => 'admin::app.configuration.index.sales.payment-methods.money-transfer-info',
-        'sort'   => 2,
+        'sort'   => 4,
         'fields' => [
             [
                 'name'          => 'title',
