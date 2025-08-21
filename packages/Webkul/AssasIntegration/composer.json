@@ -18,6 +18,11 @@
             "Ds\\AssasIntegration\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ds\\AssasIntegration\\Tests\\": "tests/"
+        }
+    },
     "extra": {
         "laravel": {
             "providers": [
