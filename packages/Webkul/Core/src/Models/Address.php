@@ -52,4 +52,18 @@ abstract class Address extends Model implements AddressContract
     {
         return $this->belongsTo(Customer::class);
     }
+
+    /**
+     * Get the CPF/CNPJ attribute.
+     * Custom field added for Brazilian market requirements.
+     */
+    public function getCpfCnpjAttribute($value)
+    {
+        return $value;
+    }
+
+    public function getAddressNumberAttribute($value)
+    {
+        return $value;
+    }
 }

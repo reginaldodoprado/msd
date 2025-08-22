@@ -33,6 +33,7 @@ class AddressResource extends JsonResource
             'email'             => $this->email,
             'phone'             => $this->phone,
             'vat_id'            => $this->vat_id,
+            'cpf_cnpj'          => $this->cpf_cnpj, // Campo customizado para CPF/CNPJ
             'default_address'   => $this->default_address,
             'use_for_shipping'  => $this->use_for_shipping,
             'additional'        => $this->additional,

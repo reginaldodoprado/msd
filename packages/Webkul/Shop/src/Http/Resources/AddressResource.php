@@ -26,6 +26,7 @@ class AddressResource extends JsonResource
             'gender'            => $this->gender,
             'company_name'      => $this->company_name,
             'address'           => explode(PHP_EOL, $this->address),
+            'addressNumber'     => $this->addressNumber,
             'city'              => $this->city,
             'state'             => $this->state,
             'country'           => $this->country,
@@ -33,6 +34,7 @@ class AddressResource extends JsonResource
             'email'             => $this->email,
             'phone'             => $this->phone,
             'vat_id'            => $this->vat_id,
+            'cpf_cnpj'          => $this->cpf_cnpj, // Campo customizado para CPF/CNPJ
             'default_address'   => $this->default_address,
             'use_for_shipping'  => $this->use_for_shipping,
             'additional'        => $this->additional,
