@@ -434,11 +434,13 @@ class Cart
                 'vat_id',
                 'email',
                 'address',
+                'addressNumber',
                 'country',
                 'state',
                 'city',
                 'postcode',
                 'phone',
+                'cpf_cnpj',
             ])
             ->merge([
                 'address_type'      => CartAddress::ADDRESS_TYPE_BILLING,
@@ -484,11 +486,13 @@ class Cart
             'last_name',
             'email',
             'address',
+            'addressNumber',
             'country',
             'state',
             'city',
             'postcode',
             'phone',
+            'cpf_cnpj',
         ];
 
         if ($this->cart->billing_address->use_for_shipping) {
