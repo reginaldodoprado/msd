@@ -289,7 +289,7 @@
                         <!-- Address Form Vue Component -->
                         <v-checkout-address-form
                             :control-name="activeAddressForm"
-                            :address="selectedAddressForEdit || undefined"
+                            :address="selectedAddressForEdit || cart[activeAddressForm + '_address'] || undefined"
                         ></v-checkout-address-form>
 
                         <!-- Save Address to Address Book Checkbox -->

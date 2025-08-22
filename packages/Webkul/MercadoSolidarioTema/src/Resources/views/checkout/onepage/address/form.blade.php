@@ -74,6 +74,26 @@
 
             {!! view_render_event('bagisto.shop.checkout.onepage.address.form.email.after') !!}
 
+            <!-- CPF/CNPJ -->
+            <x-shop::form.control-group>
+                <x-shop::form.control-group.label class="required !mt-0">
+                    CPF/CNPJ
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                    type="text"
+                    ::name="controlName + '.cpf_cnpj'"
+                    ::value="address.cpf_cnpj"
+                    rules="required"
+                    label="CPF/CNPJ"
+                    placeholder="000.000.000-00 ou 00.000.000/0000-00"
+                />
+
+                <x-shop::form.control-group.error ::name="controlName + '.cpf_cnpj'" />
+            </x-shop::form.control-group>
+
+            {!! view_render_event('bagisto.shop.checkout.onepage.address.form.cpf_cnpj.after') !!}
+
             <!-- Street Address -->
             <x-shop::form.control-group>
                 <x-shop::form.control-group.label class="required !mt-0">
@@ -113,6 +133,26 @@
             </x-shop::form.control-group>
 
             {!! view_render_event('bagisto.shop.checkout.onepage.address.form.address.after') !!}
+
+            <!-- Address Number -->
+            <x-shop::form.control-group>
+                <x-shop::form.control-group.label class="required !mt-0">
+                    Número
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                    type="text"
+                    ::name="controlName + '.addressNumber'"
+                    ::value="address.addressNumber"
+                    rules="required"
+                    label="Número"
+                    placeholder="123, S/N, Apto 101"
+                />
+
+                <x-shop::form.control-group.error ::name="controlName + '.addressNumber'" />
+            </x-shop::form.control-group>
+
+            {!! view_render_event('bagisto.shop.checkout.onepage.address.form.addressNumber.after') !!}
 
             <div class="grid grid-cols-2 gap-x-5 max-md:grid-cols-1">
                 <!-- City -->
@@ -257,6 +297,7 @@
                         first_name: '',
                         last_name: '',
                         email: '',
+                        cpf_cnpj: '',
                         address: [],
                         city: '',
                         postcode: '',
