@@ -5,14 +5,19 @@ namespace Ds\AssasIntegration\PaymentMethods;
 use Webkul\Payment\Payment\Payment;
 use Illuminate\Support\Facades\Storage;
 
-class BoletoPaymentMethod extends Payment
+/**
+ * PIX Payment Method
+ * 
+ * Método de pagamento específico para PIX via Asaas
+ */
+class PixPaymentMethod extends Payment
 {
     /**
-     * Payment method code.
+     * Payment method code
      *
      * @var string
      */
-    protected $code = 'asaas_boleto';
+    protected $code = 'asaas_pix';
 
     /**
      * Get redirect url.
@@ -21,7 +26,7 @@ class BoletoPaymentMethod extends Payment
      */
     public function getRedirectUrl()
     {
-        return route('assas.boleto.process');
+        return route('assas.pix.process');
     }
 
     /**
@@ -33,6 +38,7 @@ class BoletoPaymentMethod extends Payment
     {
         $url = $this->getConfigData('image');
         
-        return $url ? Storage::url($url) : bagisto_asset('images/boleto.png', 'shop');
+        return $url ? Storage::url($url) : bagisto_asset('images/cartao.png', 'shop');
+   
     }
 }

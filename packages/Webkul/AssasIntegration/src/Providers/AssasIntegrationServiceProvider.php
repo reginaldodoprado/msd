@@ -266,9 +266,8 @@ class AssasIntegrationServiceProvider extends ServiceProvider
             __DIR__ . '/../config/assas-integration.php' => config_path('assas-integration.php'),
         ], 'assas-integration-config');
 
-        // Carregar rotas web e API
+        // Carregar rotas web
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
-        $this->loadRoutesFrom(__DIR__ . '/../Routes/api.php');
         
         // Carregar views
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'assas-integration');

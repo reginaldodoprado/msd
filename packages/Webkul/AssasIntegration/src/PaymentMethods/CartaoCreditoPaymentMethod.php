@@ -5,34 +5,34 @@ namespace Ds\AssasIntegration\PaymentMethods;
 use Webkul\Payment\Payment\Payment;
 use Illuminate\Support\Facades\Storage;
 
-class BoletoPaymentMethod extends Payment
+class CartaoCreditoPaymentMethod extends Payment
 {
     /**
      * Payment method code.
      *
      * @var string
      */
-    protected $code = 'asaas_boleto';
+    protected $code = 'asaas_cartao';
 
     /**
      * Get redirect url.
      *
-     * @return string
+     * @var string
      */
     public function getRedirectUrl()
     {
-        return route('assas.boleto.process');
+        return route('assas.cartao.process');
     }
 
     /**
      * Get payment method image.
      *
-     * @return string
+     * @var string
      */
     public function getImage()
     {
         $url = $this->getConfigData('image');
         
-        return $url ? Storage::url($url) : bagisto_asset('images/boleto.png', 'shop');
+        return $url ? Storage::url($url) : bagisto_asset('images/cartao.png', 'shop');
     }
 }
