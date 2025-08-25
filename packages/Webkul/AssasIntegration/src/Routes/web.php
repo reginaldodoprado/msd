@@ -26,7 +26,3 @@ Route::get('/assas/success', [PaymentController::class, 'success'])
 // Webhook do Asaas (sem middleware para receber notificações)
 Route::post('/assas/webhook', [PaymentController::class, 'webhook'])->name('assas.webhook');
 
-// Rota de sucesso para boleto
-Route::get('/assas/boleto/success', [PaymentController::class, 'boletoSuccess'])
-    ->name('assas.boleto.success')
-    ->middleware('web');

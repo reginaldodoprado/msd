@@ -124,16 +124,24 @@ class PaymentController extends Controller
             // Criar cobrança Boleto no Asaas
             $cobranca = $this->criarCobrancaBoleto($cart, $cliente);
             
-            // Redirecionar para nossa tela de boleto
-            return redirect()->route('assas.boleto.success', [
-                'cobranca_id' => $cobranca['id'],
-                'boleto_url' => $cobranca['bankSlipUrl'] ?? $cobranca['invoiceUrl']
-            ]);
+            if (isset($cobranca['errors'])) {
+                return redirect()->back()->with('error', 'Erro ao criar boleto: ' . $cobranca['errors'][0]['description']);
+            }
+            
+            // Redirecionar diretamente para a URL do boleto
+            $boletoUrl =  $cobranca['invoiceUrl'] ?? $cobranca['bankSlipUrl'];   
+            
+          
+            
+            // Redirecionar diretamente para o boleto
+            return redirect($boletoUrl);
             
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Erro ao processar pagamento: ' . $e->getMessage());
         }
     }
+
+
 
     /**
      * Webhook do Asaas para receber notificações de pagamento
@@ -362,6 +370,8 @@ class PaymentController extends Controller
             'addressNumber' => $cart->billing_address->address2 ?? 'S/N',
         ]);
     }
+
+
 
     /**
      * Preparar itens do carrinho para o checkout
