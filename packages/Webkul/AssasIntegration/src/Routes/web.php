@@ -1,28 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Ds\AssasIntegration\Http\Controllers\TesteAssasController;
+use Ds\AssasIntegration\Http\Controllers\PaymentController;
 
-/*
-|--------------------------------------------------------------------------
-| Rotas Web para Teste do AssasIntegration
-|--------------------------------------------------------------------------
-|
-| Rotas para testar o pacote via interface web
-|
-*/
+// Rota para processar PIX (sem middleware, verificação manual)
+Route::get('/assas/pix/process', [PaymentController::class, 'processPix'])
+    ->name('assas.pix.process')
+    ->middleware('web');
 
-Route::prefix('assas')->name('assas.')->group(function () {
-    // View de teste
-    Route::get('/teste', [TesteAssasController::class, 'index'])->name('teste');
-    
-    // Testar pagamento
-    Route::post('/testar-pagamento', [TesteAssasController::class, 'testarPagamento'])->name('testar-pagamento');
-    
-    // Testar conexão
-    Route::get('/testar-conexao', [TesteAssasController::class, 'testarConexao'])->name('testar-conexao');
-    
-    // Gerenciar customers
-    Route::get('/customers', [TesteAssasController::class, 'listarCustomers'])->name('listar-customers');
-    Route::post('/customers', [TesteAssasController::class, 'criarCustomer'])->name('criar-customer');
-});
+// Rota para processar Cartão de Crédito (sem middleware, verificação manual)
+Route::get('/assas/cartao/process', [PaymentController::class, 'processCartao'])
+    ->name('assas.cartao.process')
+    ->middleware('web');
+
+// Rota para processar Boleto (sem middleware, verificação manual)
+Route::get('/assas/boleto/process', [PaymentController::class, 'processBoleto'])
+    ->name('assas.boleto.process')
+    ->middleware('web');
+
+// Webhook do Asaas (sem middleware para receber notificações)
+Route::post('/assas/webhook', [PaymentController::class, 'webhook'])->name('assas.webhook');
+
+// Rota de sucesso para boleto
+Route::get('/assas/boleto/success', [PaymentController::class, 'boletoSuccess'])
+    ->name('assas.boleto.success')
+    ->middleware('web');
