@@ -18,6 +18,11 @@ Route::get('/assas/boleto/process', [PaymentController::class, 'processBoleto'])
     ->name('assas.boleto.process')
     ->middleware('web');
 
+// Rota de sucesso para PIX e Cartão (retorno do Asaas)
+Route::get('/assas/success', [PaymentController::class, 'success'])
+    ->name('assas.success')
+    ->middleware('web');
+
 // Webhook do Asaas (sem middleware para receber notificações)
 Route::post('/assas/webhook', [PaymentController::class, 'webhook'])->name('assas.webhook');
 
