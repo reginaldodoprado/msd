@@ -140,10 +140,31 @@ class PaymentController extends Controller
      */
     public function webhook(Request $request)
     {
-       
+        Log::info('Webhook Asaas recebido:', $request->all());
 
         try {
-           
+            $event = $request->input('event');
+            $checkoutId = $request->input('checkout.id');
+
+            // Verificar se é evento de checkout pago
+            if ($event === 'CHECKOUT_PAID' && $checkoutId) {
+                // Buscar pedido pelo checkout_id
+                $order = \Webkul\Sales\Models\Order::whereHas('payment', function($query) use ($checkoutId) {
+                    $query->whereJsonContains('additional->checkout_id', $checkoutId);
+                })->first();
+
+                if ($order) {
+                    // Atualizar status do pedido para pago
+                    $order->update(['status' => 'processing']);
+                    
+                    Log::info('Status do pedido atualizado para pago:', [
+                        'order_id' => $order->id,
+                        'checkout_id' => $checkoutId
+                    ]);
+                } else {
+                    Log::warning('Pedido não encontrado para checkout_id:', ['checkout_id' => $checkoutId]);
+                }
+            }
 
             return response()->json(['status' => 'success']);
 
@@ -154,6 +175,57 @@ class PaymentController extends Controller
             ]);
 
             return response()->json(['error' => 'Erro interno'], 500);
+        }
+    }
+
+    /**
+     * Sucesso do pagamento PIX/Cartão (retorno do Asaas)
+     */
+    public function success()
+    {
+ 
+
+        $cart = Cart::getCart();
+        
+        if (!$cart) {
+            return redirect()->route('shop.checkout.cart.index')->with('error', 'Carrinho não encontrado');
+        }
+
+        try {
+            // 1. Criar pedido usando OrderRepository
+            $orderData = (new \Webkul\Sales\Transformers\OrderResource($cart))->jsonSerialize();
+            $order = app(\Webkul\Sales\Repositories\OrderRepository::class)->create($orderData);
+            
+            // 2. Salvar checkout_id no pedido se existir na sessão
+            $checkoutId = session('checkout_id');
+            if ($checkoutId && $order->payment) {
+                $order->payment->update([
+                    'additional' => array_merge(
+                        $order->payment->additional ?? [], 
+                        ['checkout_id' => $checkoutId]
+                    )
+                ]);
+            }
+            
+            // 3. Desativar carrinho
+            Cart::deActivateCart();
+            
+            // 4. Flash order_id para a página de sucesso
+            session()->flash('order_id', $order->id);
+            
+            // 5. Limpar checkout_id da sessão
+            session()->forget('checkout_id');
+            
+            // 6. Redirecionar para página de sucesso
+            return redirect()->route('shop.checkout.onepage.success');
+            
+        } catch (\Exception $e) {
+            Log::error('Erro ao criar pedido no sucesso:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->route('shop.checkout.cart.index')->with('error', 'Erro ao finalizar pedido: ' . $e->getMessage());
         }
     }
 
@@ -213,19 +285,26 @@ class PaymentController extends Controller
             'callback' => [
                 'cancelUrl' => route('shop.checkout.onepage.index'),
                 'expiredUrl' => route('shop.checkout.onepage.index'),
-                'successUrl' => route('shop.checkout.onepage.success')
+                'successUrl' => route('assas.success')
             ],
             'items' => $this->prepararItensCarrinho($cart),
             'customerData' => $this->prepararDadosCliente($cart, $cliente)
         ];
 
+     
+        
         $response = $this->asaasService->checkout()->criarCheckout($dados);
         
+       
         if (isset($response['errors'])) {
             Log::error('Checkout não foi criado com sucesso:', $response);
             return $response;
         }
 
+        // Salvar checkout_id na sessão para usar no sucesso
+        if (isset($response['id'])) {
+            session(['checkout_id' => $response['id']]);
+        }
         
         return $response;
     }
@@ -245,7 +324,7 @@ class PaymentController extends Controller
             'callback' => [
                 'cancelUrl' => route('shop.checkout.onepage.index'),
                 'expiredUrl' => route('shop.checkout.onepage.index'),
-                'successUrl' => route('shop.checkout.onepage.success')
+                'successUrl' => route('assas.success')
             ],
             'items' => $this->prepararItensCarrinho($cart),
             'customerData' => $this->prepararDadosCliente($cart, $cliente)
@@ -258,6 +337,10 @@ class PaymentController extends Controller
             return $response;
         }
 
+        // Salvar checkout_id na sessão para usar no sucesso
+        if (isset($response['id'])) {
+            session(['checkout_id' => $response['id']]);
+        }
        
         return $response;
     }
@@ -379,15 +462,18 @@ class PaymentController extends Controller
         // Formatar telefone para o formato esperado pelo Asaas (apenas números)
         $phoneNumber = preg_replace('/[^0-9]/', '', $billingAddress->phone ?? $customer->phone ?? '');
         
+    
+        
         return [
             'name' => substr($cart->billing_address->first_name . ' ' . $cart->billing_address->last_name, 0, 30), // Limitar a 30 caracteres
             'cpfCnpj' => $cpfCnpj, // CPF sem formatação do carrinho
             'email' => $cart->billing_address->email,
-            'phone' => $phoneNumber, // Telefone sem formatação para o Asaas
+            'phone' => $phoneNumber, // Telefone validado para o Asaas
             'address' => $cart->billing_address->address ?? 'Endereço',
             'addressNumber' => $cart->billing_address->addressNumber ?? 'S/N',
             'province' => $cart->billing_address->city ?? 'Centro',
             'postalCode' => $cart->billing_address->postcode,
         ];
+    
     }
 }
