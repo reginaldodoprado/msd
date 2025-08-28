@@ -34,7 +34,7 @@ class ParcelamentoService
      */
     public function criarParcelamentoComCartaoDeCredito(array $dados)
     {
-        return $this->apiClient->post("installments/", $dados);
+        return $this->apiClient->post("installments", $dados);
     }
 
     /**
@@ -51,7 +51,6 @@ class ParcelamentoService
     public function removerParcelamento(string $id)
     {
         return $this->apiClient->delete("installments/{$id}");
-    
     }
 
     /**
@@ -67,7 +66,7 @@ class ParcelamentoService
      */
     public function gerarCarneDeParcelamento(string $id)
     {
-        return $this->apiClient->post("installments/{$id}/paymentBook");
+        return $this->apiClient->get("installments/{$id}/paymentBook");
     }
 
     /**
