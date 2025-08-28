@@ -42,7 +42,7 @@ class WebhookService
      */
     public function atualizarWebhook(string $id, array $dados)
     {
-        return $this->apiClient->post("webhooks/{$id}", $dados);
+        return $this->apiClient->put("webhooks/{$id}", $dados);
     }
 
     /**
