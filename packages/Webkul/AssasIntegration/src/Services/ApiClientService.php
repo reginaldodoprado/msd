@@ -58,7 +58,9 @@ class ApiClientService
                 ->{$method}($url, $options[$method === 'GET' ? 'query' : 'json'] ?? []);
 
             if ($response->status() !== 401) {
-                return $response->json();
+                $jsonResponse = $response->json();
+                // Se a resposta for null ou vazia, retorna array vazio
+                return $jsonResponse ?? [];
             }
 
             // Para Asaas, se der 401, não tenta renovar token
