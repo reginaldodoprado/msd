@@ -18,7 +18,7 @@ class PixService
      */
     public function criarChavePix(array $dados)
     {
-        return $this->apiClient->post("pix/addresseKeys", $dados);
+        return $this->apiClient->post("pix/addressKeys", $dados);
     }
 
     /**
@@ -26,7 +26,7 @@ class PixService
      */
     public function listarChavesPix(array $filtros = [])
     {
-        return $this->apiClient->get("pix/addresseKeys", $filtros);
+        return $this->apiClient->get("pix/addressKeys", $filtros);
     }
 
     /**
@@ -34,7 +34,7 @@ class PixService
      */
     public function recuperarChavePix(string $id)
     {
-        return $this->apiClient->get("pix/addresseKeys/{$id}");
+        return $this->apiClient->get("pix/addressKeys/{$id}");
     }
 
     /**
@@ -42,7 +42,7 @@ class PixService
      */
     public function removerChavePix(string $id)
     {
-        return $this->apiClient->delete("pix/addresseKeys/{$id}");
+        return $this->apiClient->delete("pix/addressKeys/{$id}");
     }
 
     /**
@@ -66,7 +66,7 @@ class PixService
      */
     public function consultarFichasDisponiveis()
     {
-        return $this->apiClient->get("pix/tokenBuckets/addressKey");
+        return $this->apiClient->get("pix/tokenBucket/addressKey");
     }
 
    
