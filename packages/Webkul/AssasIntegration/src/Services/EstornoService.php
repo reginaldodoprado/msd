@@ -17,13 +17,13 @@ class EstornoService
     /**
      * Listar estornos
      */
-    public function listarEstornosDaCobranca (string $id)
+    public function listarEstornosDaCobranca(string $id)
     {
         return $this->apiClient->get("payments/{$id}/refunds");
     }
 
     /**
-     * Estonar boleto
+     * Estornar boleto
      */
     public function estornarBoleto(string $id)
     {
@@ -31,16 +31,16 @@ class EstornoService
     }
 
     /**
-     * Estonar parcela
+     * Estornar parcelamento
      */
     public function estornarParcelamento(string $id)
     {
-            return $this->apiClient->post("installments/{$id}/refund");
+        return $this->apiClient->post("installments/{$id}/refund");
     }
     
 
     /**
-     * Estonar cobranca resumido
+     * Estornar cobrança resumida
      */
     public function estornarCobrancaResumido(string $id)
     {
@@ -48,7 +48,7 @@ class EstornoService
     }
 
     /**
-     * Estonar cobranca
+     * Estornar cobrança
      */
     public function estornarCobranca(string $id)
     {
