@@ -132,9 +132,9 @@ class CobrancaService
     /**
      * Confirmar recebimento em dinheiro
      */
-    public function confirmarRecebimentoEmDinheiro(string $id)
+    public function confirmarRecebimentoEmDinheiro(string $id, array $dados = [])
     {
-        return $this->apiClient->post("payments/{$id}/receiveInCash",);
+        return $this->apiClient->post("payments/{$id}/receiveInCash", $dados);
     }
 
     /**
@@ -142,7 +142,7 @@ class CobrancaService
      */
     public function desfazerConfirmacaoDeRecebimentoEmDinheiro(string $id)
     {
-        return $this->apiClient->post("payments/{$id}/undoReceiveInCash");
+        return $this->apiClient->post("payments/{$id}/undoReceivedInCash");
     }
 
     /**
