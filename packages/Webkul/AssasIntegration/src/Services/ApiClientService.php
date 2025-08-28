@@ -23,6 +23,13 @@ class ApiClientService
 
     public function post(string $endpoint, array $payload = []): array
     {
+        // Verifica se há arquivos no payload para usar multipart
+        $hasFiles = $this->hasFiles($payload);
+        
+        if ($hasFiles) {
+            return $this->request('POST', $endpoint, ['multipart' => $this->prepareMultipartData($payload)]);
+        }
+        
         return $this->request('POST', $endpoint, ['json' => $payload]);
     }
 
@@ -45,17 +52,44 @@ class ApiClientService
 
             // Headers corretos para Asaas
             $headers = [
-                'Content-Type' => 'application/json',
                 'User-Agent' => 'Laravel App',
                 'access_token' => $token,
             ];
+
+            // Adiciona Content-Type apenas se não for multipart
+            if (!isset($options['multipart'])) {
+                $headers['Content-Type'] = 'application/json';
+            }
 
             $url = "{$this->baseUrl}/{$endpoint}";
             
         
             
-            $response = Http::withHeaders($headers)
-                ->{$method}($url, $options[$method === 'GET' ? 'query' : 'json'] ?? []);
+            if (isset($options['multipart'])) {
+                // Para multipart, usa attach para cada arquivo
+                $http = Http::withHeaders($headers);
+                
+                foreach ($options['multipart'] as $field) {
+                    if (isset($field['contents']) && is_resource($field['contents'])) {
+                        $http = $http->attach(
+                            $field['name'],
+                            $field['contents'],
+                            $field['filename'] ?? null,
+                            $field['headers'] ?? []
+                        );
+                    } else {
+                        $http = $http->attach(
+                            $field['name'],
+                            $field['contents']
+                        );
+                    }
+                }
+                
+                $response = $http->{$method}($url);
+            } else {
+                $response = Http::withHeaders($headers)
+                    ->{$method}($url, $this->getRequestData($options, $method));
+            }
 
             if ($response->status() !== 401) {
                 // Verifica se a resposta é um arquivo (não JSON)
@@ -125,5 +159,53 @@ class ApiClientService
         }
         
         return 'arquivo';
+    }
+
+    private function hasFiles(array $payload): bool
+    {
+        foreach ($payload as $value) {
+            if ($value instanceof \CURLFile) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private function prepareMultipartData(array $payload): array
+    {
+        $multipart = [];
+        
+        foreach ($payload as $key => $value) {
+            if ($value instanceof \CURLFile) {
+                $multipart[] = [
+                    'name' => $key,
+                    'contents' => fopen($value->getFilename(), 'r'),
+                    'filename' => $value->getPostFilename(),
+                    'headers' => [
+                        'Content-Type' => $value->getMimeType()
+                    ]
+                ];
+            } else {
+                $multipart[] = [
+                    'name' => $key,
+                    'contents' => (string) $value
+                ];
+            }
+        }
+        
+        return $multipart;
+    }
+
+    private function getRequestData(array $options, string $method): array
+    {
+        if ($method === 'GET') {
+            return $options['query'] ?? [];
+        }
+        
+        if (isset($options['multipart'])) {
+            return $options['multipart'];
+        }
+        
+        return $options['json'] ?? [];
     }
 }
