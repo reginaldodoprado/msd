@@ -49,7 +49,7 @@ class RecargaDeCelularService
      */
     public function listarValoresDisponiveisParaRecargaDeCelular(string $phoneNumber)
     {
-        return $this->apiClient->get("mobilePhoneRecharges/{phoneNumber}/provider");
+        return $this->apiClient->get("mobilePhoneRecharges/{$phoneNumber}/provider");
     }
 
    
