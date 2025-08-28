@@ -16,7 +16,7 @@ class ExtratoService
     /**
      * Recuperar extrato
      */ 
-    public function recuperarExtrato(string $id)
+    public function recuperarExtrato()
     {
         return $this->apiClient->get("financialTransactions");
     }
