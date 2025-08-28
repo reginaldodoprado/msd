@@ -83,10 +83,9 @@ class AssinaturaService
     /**
      * Gerar carne de assinatura
      */
-    public function gerarCarneDeAssinatura(string $id)
+    public function gerarCarneDeAssinatura(string $id, array $filtros = [])
     {
-        return $this->apiClient->post("subscriptions/{$id}/paymentBook");
-
+        return $this->apiClient->get("subscriptions/{$id}/paymentBook", $filtros);
     }
 
     /**
@@ -94,7 +93,7 @@ class AssinaturaService
      */
     public function criarConfiguracaoParaEmissaoDeNotaFiscal(string $id, array $dados)
     {
-        return $this->apiClient->post("subscriptions/{$id}/invoicesSettings", $dados);
+        return $this->apiClient->post("subscriptions/{$id}/invoiceSettings", $dados);
     }
     
     /**
@@ -102,7 +101,7 @@ class AssinaturaService
      */
     public function recuperarConfiguracaoParaEmissaoDeNotaFiscal(string $id)
     {
-        return $this->apiClient->get("subscriptions/{$id}/invoicesSettings");
+        return $this->apiClient->get("subscriptions/{$id}/invoiceSettings");
     }
 
     /**
@@ -110,7 +109,7 @@ class AssinaturaService
      */
     public function removerConfiguracaoParaEmissaoDeNotaFiscal(string $id)
     {
-        return $this->apiClient->delete("subscriptions/{$id}/invoicesSettings");
+        return $this->apiClient->delete("subscriptions/{$id}/invoiceSettings");
     }
 
     /**
@@ -118,7 +117,7 @@ class AssinaturaService
      */
     public function atualizarConfiguracaoParaEmissaoDeNotaFiscal(string $id, array $dados)
     {
-        return $this->apiClient->put("subscriptions/{$id}/invoicesSettings", $dados);
+        return $this->apiClient->put("subscriptions/{$id}/invoiceSettings", $dados);
     }
 
     /**
