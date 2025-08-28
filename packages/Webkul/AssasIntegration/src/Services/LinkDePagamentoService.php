@@ -18,7 +18,7 @@ class LinkDePagamentoService
      */
     public function criarLinkDePagamento(array $dados)
     {
-        return $this->apiClient->post("paymentsLinks", $dados);
+        return $this->apiClient->post("paymentLinks", $dados);
     }
 
     /**
@@ -26,7 +26,7 @@ class LinkDePagamentoService
      */
     public function listarLinksDePagamento(array $filtros = [])
     {
-        return $this->apiClient->get("paymentsLinks", $filtros);
+        return $this->apiClient->get("paymentLinks", $filtros);
     }
 
     /**
@@ -34,7 +34,7 @@ class LinkDePagamentoService
      */
     public function atualizarLinkDePagamento(string $id, array $dados)
     {
-        return $this->apiClient->put("paymentsLinks/{$id}", $dados);
+        return $this->apiClient->put("paymentLinks/{$id}", $dados);
     }
 
     /**
@@ -42,7 +42,7 @@ class LinkDePagamentoService
      */
     public function recuperarLinkDePagamento(string $id)
     {
-        return $this->apiClient->get("paymentsLinks/{$id}");
+        return $this->apiClient->get("paymentLinks/{$id}");
     }
 
     /**
@@ -50,7 +50,7 @@ class LinkDePagamentoService
      */
     public function removerLinkDePagamento(string $id)
     {
-        return $this->apiClient->delete("paymentsLinks/{$id}");
+        return $this->apiClient->delete("paymentLinks/{$id}");
     }
 
     /**
@@ -58,7 +58,7 @@ class LinkDePagamentoService
      */
     public function restaurarLinkDePagamento(string $id)
     {
-        return $this->apiClient->post("paymentsLinks/{$id}/restore");
+        return $this->apiClient->post("paymentLinks/{$id}/restore");
     }
 
     /**
@@ -66,7 +66,7 @@ class LinkDePagamentoService
      */
     public function adicionarImagemAoLinkDePagamento(string $id, array $dados)
     {
-        return $this->apiClient->post("paymentsLinks/{$id}/images", $dados);
+        return $this->apiClient->post("paymentLinks/{$id}/images", $dados);
     }
 
   /**
@@ -74,7 +74,7 @@ class LinkDePagamentoService
    */
   public function listarImagensDeUmLinkDePagamento(string $id)
   {
-    return $this->apiClient->get("paymentsLinks/{$id}/images");
+    return $this->apiClient->get("paymentLinks/{$id}/images");
   }
 
   /**
@@ -82,7 +82,7 @@ class LinkDePagamentoService
    */
   public function recuperarImagemDeUmLinkDePagamento(string $id, string $imagemId)
   {
-    return $this->apiClient->get("paymentsLinks/{$id}/images/{$imagemId}");
+    return $this->apiClient->get("paymentLinks/{$id}/images/{$imagemId}");
   }
 
   /**
@@ -90,7 +90,7 @@ class LinkDePagamentoService
    */
   public function removerImagemDeUmLinkDePagamento(string $id, string $imagemId)
   {
-    return $this->apiClient->delete("paymentsLinks/{$id}/images/{$imagemId}");
+    return $this->apiClient->delete("paymentLinks/{$id}/images/{$imagemId}");
   }
     
   /**
@@ -98,7 +98,7 @@ class LinkDePagamentoService
    */
   public function definirImagemPrincipalDeUmLinkDePagamento(string $id, string $imagemId)
   {
-    return $this->apiClient->post("paymentsLinks/{$id}/images/{$imagemId}/setAsMain");
+    return $this->apiClient->post("paymentLinks/{$id}/images/{$imagemId}/setAsMain");
   }
 
   
