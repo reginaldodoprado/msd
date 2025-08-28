@@ -171,9 +171,9 @@ class CobrancaService
     }
 
     /**
-     * Confimar pagmaneto em sandbox
+     * Confirmar pagamento em sandbox
      */
-    public function confimarPagmanetoEmSandbox(string $id)
+    public function confirmarPagamentoEmSandbox(string $id)
     {
         return $this->apiClient->post("sandbox/payment/{$id}/confirm");
     }   
