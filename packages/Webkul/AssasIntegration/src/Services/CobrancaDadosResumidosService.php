@@ -86,9 +86,9 @@ class CobrancaDadosResumidosService
     /**
      * Confirmar recebimento em dinheiro
      */
-    public function confirmarRecebimentoEmDinheiroResumido(string $id)
+    public function confirmarRecebimentoEmDinheiroResumido(string $id, array $dados = [])
     {
-        return $this->apiClient->post("lean/payments/{$id}/receiveInCash",);
+        return $this->apiClient->post("lean/payments/{$id}/receiveInCash", $dados);
     }
 
     /**
@@ -96,7 +96,7 @@ class CobrancaDadosResumidosService
      */
     public function desfazerConfirmacaoDeRecebimentoEmDinheiroResumido(string $id)
     {
-        return $this->apiClient->post("lean/payments/{$id}/undoReceiveInCash");
+        return $this->apiClient->post("lean/payments/{$id}/undoReceivedInCash");
     }
 
 
