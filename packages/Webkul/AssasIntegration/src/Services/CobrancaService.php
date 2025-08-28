@@ -170,6 +170,14 @@ class CobrancaService
         return $this->apiClient->get("payments/limits");
     }
 
+    /**
+     * Confimar pagmaneto em sandbox
+     */
+    public function confimarPagmanetoEmSandbox(string $id)
+    {
+        return $this->apiClient->post("sandbox/payment/{$id}/confirm");
+    }   
+
 }
 
 
