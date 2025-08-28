@@ -18,7 +18,7 @@ class DocumentoDeCobrancaService
      */
     public function fazerUploadDeDocumentoDeCobranca(string $id, array $dados)
     {
-        return $this->apiClient->post("payments/{$id}/document", $dados);
+        return $this->apiClient->post("payments/{$id}/documents", $dados);
     }
 
     /**
@@ -34,7 +34,7 @@ class DocumentoDeCobrancaService
      */
     public function atualizarDocumentoDeCobranca(string $id, string $documentoId, array $dados)
     {
-        return $this->apiClient->put("payments/{$id}/document/{$documentoId}", $dados);
+        return $this->apiClient->put("payments/{$id}/documents/{$documentoId}", $dados);
     }
 
     /**
@@ -42,7 +42,7 @@ class DocumentoDeCobrancaService
      */
     public function recuperarDocumentoDeCobranca(string $id, string $documentoId)
     {
-        return $this->apiClient->get("payments/{$id}/document/{$documentoId}");
+        return $this->apiClient->get("payments/{$id}/documents/{$documentoId}");
     }
 
     /**
@@ -50,6 +50,6 @@ class DocumentoDeCobrancaService
      */
     public function excluirDocumentoDeCobranca(string $id, string $documentoId)
     {
-        return $this->apiClient->delete("payments/{$id}/document/{$documentoId}");
+        return $this->apiClient->delete("payments/{$id}/documents/{$documentoId}");
     }
 }
