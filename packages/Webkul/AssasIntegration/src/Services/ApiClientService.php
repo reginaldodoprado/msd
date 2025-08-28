@@ -58,6 +58,28 @@ class ApiClientService
                 ->{$method}($url, $options[$method === 'GET' ? 'query' : 'json'] ?? []);
 
             if ($response->status() !== 401) {
+                // Verifica se a resposta é um arquivo (não JSON)
+                $contentType = $response->header('Content-Type');
+                $isFile = $contentType && (
+                    str_contains($contentType, 'application/pdf') ||
+                    str_contains($contentType, 'application/octet-stream') ||
+                    str_contains($contentType, 'text/csv') ||
+                    str_contains($contentType, 'application/vnd.ms-excel') ||
+                    str_contains($contentType, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+                );
+                
+                if ($isFile) {
+                    // Se for arquivo, retorna informações sobre o arquivo
+                    return [
+                        'type' => 'file',
+                        'content_type' => $contentType,
+                        'size' => $response->header('Content-Length'),
+                        'filename' => $this->extractFilename($response),
+                        'content' => $response->body() // Conteúdo binário do arquivo
+                    ];
+                }
+                
+                // Se não for arquivo, tenta fazer JSON
                 $jsonResponse = $response->json();
                 // Se a resposta for null ou vazia, retorna array vazio
                 return $jsonResponse ?? [];
@@ -77,7 +99,31 @@ class ApiClientService
         return config('assas-integration.asaas.api_key') ?? env('ASAAS_API_KEY');
     }
 
- 
-
- 
+    /**
+     * Extrai o nome do arquivo dos headers da resposta
+     */
+    private function extractFilename($response): ?string
+    {
+        // Tenta extrair do header Content-Disposition
+        $contentDisposition = $response->header('Content-Disposition');
+        if ($contentDisposition && preg_match('/filename="([^"]+)"/', $contentDisposition, $matches)) {
+            return $matches[1];
+        }
+        
+        // Tenta extrair do header Content-Type
+        $contentType = $response->header('Content-Type');
+        if ($contentType) {
+            if (str_contains($contentType, 'application/pdf')) {
+                return 'documento.pdf';
+            } elseif (str_contains($contentType, 'text/csv')) {
+                return 'dados.csv';
+            } elseif (str_contains($contentType, 'application/vnd.ms-excel')) {
+                return 'planilha.xls';
+            } elseif (str_contains($contentType, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')) {
+                return 'planilha.xlsx';
+            }
+        }
+        
+        return 'arquivo';
+    }
 }
