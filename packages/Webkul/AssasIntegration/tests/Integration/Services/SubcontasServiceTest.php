@@ -29,7 +29,7 @@ class SubcontasServiceTest extends TestCase
 
         $response = $this->subcontasService->listarSubcontas($filtros);
 
-        dump('RESPOSTA LISTAR SUBCONTAS:', $response);
+       
 
         $this->assertIsArray($response);
         $this->assertArrayHasKey('data', $response);
@@ -42,7 +42,7 @@ class SubcontasServiceTest extends TestCase
         $dados = [
             'name' => 'Subconta Teste',
             'email' => 'subconta.' . time() . '@teste.com', // Email único com timestamp
-            'cpfCnpj' => '42469359000152', // CNPJ válido real
+            'cpfCnpj' => '10801670000160', // CNPJ válido real
             'companyType' => 'MEI', // Tipo da empresa (obrigatório para PJ)
             'mobilePhone' => '11987654321',
             'incomeValue' => 5000.00,
@@ -54,7 +54,7 @@ class SubcontasServiceTest extends TestCase
 
         $response = $this->subcontasService->criarSubconta($dados);
 
-        dump('RESPOSTA CRIAR SUBCONTA:', $response);
+        
 
         $this->assertIsArray($response);
         $this->assertArrayHasKey('id', $response);
@@ -92,13 +92,14 @@ class SubcontasServiceTest extends TestCase
     public function salvar_ou_atualizar_config_da_conta_escrow_para_subconta($subcontaId)
     {
         $dados = [
-            'enabled' => true,
-            'retentionPeriod' => 30
+            'daysToExpire' => 30,
+            'enabled' => true
+            
         ];
 
         $response = $this->subcontasService->salvarOuAtualizarConfigDaContaEscrowParaSubconta($subcontaId, $dados);
 
-        dump('RESPOSTA SALVAR/ATUALIZAR CONFIG ESCROW:', $response);
+       
 
         $this->assertIsArray($response);
         $this->assertArrayHasKey('enabled', $response);
@@ -113,7 +114,7 @@ class SubcontasServiceTest extends TestCase
     {
         $response = $this->subcontasService->recuperarConfigDaContaEscrowParaSubconta($subcontaId);
 
-        dump('RESPOSTA RECUPERAR CONFIG ESCROW:', $response);
+        
 
         $this->assertIsArray($response);
         $this->assertArrayHasKey('enabled', $response);
