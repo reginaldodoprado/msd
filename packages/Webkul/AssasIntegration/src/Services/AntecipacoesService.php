@@ -49,9 +49,9 @@ class AntecipacoesService
     /**
      * Atualizar status de uma antecipação
      */
-    public function atualizarStatusDeUmaAntecipacaoAutomaticamente(string $id)
+    public function atualizarStatusDeUmaAntecipacaoAutomaticamente(array $dados)
     {
-        return $this->apiClient->post("anticipations/configurations");
+        return $this->apiClient->put("anticipations/configurations", $dados);
     }
 
     /**
