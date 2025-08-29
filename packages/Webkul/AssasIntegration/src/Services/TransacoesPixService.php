@@ -26,7 +26,7 @@ class TransacoesPixService
     */
    public function decodificarParaPagarQrCodePix(array $dados)
    {
-    return $this->apiClient->post("pix/qrCodes/pay/decode", $dados);
+    return $this->apiClient->post("pix/qrCodes/decode", $dados);
    }
    
    /**
@@ -34,7 +34,7 @@ class TransacoesPixService
     */
    public function recuperarUmaUnicaTransacaoPix(string $id)
    {
-    return $this->apiClient->get("pix/qrCodes/{$id}");
+    return $this->apiClient->get("pix/transactions/{$id}");
    }
 
    /**
