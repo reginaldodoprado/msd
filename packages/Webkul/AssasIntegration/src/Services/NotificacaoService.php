@@ -21,7 +21,7 @@ class NotificacaoService
      */
     public function atualizarNotificacao(string $id, array $dados)
     {
-        return $this->apiClient->post("notifications/{$id}", $dados);
+        return $this->apiClient->put("notifications/{$id}", $dados);
     }
 
     /**
@@ -29,7 +29,7 @@ class NotificacaoService
      */
     public function atualizarEmLote(array $dados)
     {
-        return $this->apiClient->post("notifications/batch", $dados);
+        return $this->apiClient->put("notifications/batch", $dados);
     }
 
 
