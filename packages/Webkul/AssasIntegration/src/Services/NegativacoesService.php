@@ -56,17 +56,17 @@ class NegativacoesService
     /**
      * Listar cobranças disponiveis para uma negativacao
      */
-    public function listarCobrasDisponiveisParaUmaNegativacao(string $id)
+    public function listarCobrancasDisponiveisParaUmaNegativacao()
     {
-        return $this->apiClient->get("paymentDunnings/{$id}/paymentsAvailableForDunning");
+        return $this->apiClient->get("paymentDunnings/paymentsAvailableForDunning");
     }
 
    /**
     * Reenviar documento 
     */
-   public function reenviarDocumento(string $id)
+   public function reenviarDocumento(string $id, array $dados)
    {
-    return $this->apiClient->post("paymentDunnings/{$id}/documents");
+    return $this->apiClient->post("paymentDunnings/{$id}/documents", $dados);
    }
 
    /**
