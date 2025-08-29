@@ -22,6 +22,14 @@ class NegativacoesService
     }
 
     /**
+     * Simular negativacao
+     */
+    public function simularNegativacao(array $filtros = [])
+    {
+        return $this->apiClient->post("paymentDunnings/simulate", $filtros);
+    }
+
+    /**
      * Listar negativacoes
      */
     public function listarNegativacoes(array $filtros = []) 
