@@ -58,7 +58,7 @@ class PersonalizarContaService
      */
     public function recuperarTaxasDaConta()
     {
-        return $this->apiClient->get("myAccount/account/fees/");
+        return $this->apiClient->get("myAccount/fees/");
     }
     
     /**
