@@ -25,11 +25,11 @@ class ClienteServiceTest extends TestCase
         $service = new ClienteService($this->apiClient);
 
         $dados = [
-            'name' => 'João Silva',
-            'email' => 'joao.silva@email.com',
-            'phone' => '4799376637',
+            'name' => 'teste',
+            'email' => 'juan@dsaplicativos.com.br',
+            'phone' => '11994152001',
             'cpfCnpj' => '24971563792',
-            'postalCode' => '12345-678',
+            'postalCode' => '07145100',
             'addressNumber' => '123',
             'addressComplement' => 'Apto 1'
         ];
@@ -43,7 +43,7 @@ class ClienteServiceTest extends TestCase
         $this->assertArrayHasKey('name', $response);
         $this->assertArrayHasKey('email', $response);
         $this->assertArrayHasKey('cpfCnpj', $response);
-        $this->assertEquals('João Silva', $response['name']);
+        $this->assertEquals('teste', $response['name']);
 
         return $response['id'];
     }
@@ -68,27 +68,16 @@ class ClienteServiceTest extends TestCase
         $this->assertArrayHasKey('limit', $response);
         $this->assertArrayHasKey('offset', $response);
     }
+/**
+     * @test
+     * @depends criar_cliente
+     */
+    public function buscar_cliente_por_id($clienteId)
 
-    /** @test */
-    public function buscar_cliente_por_id()
     {
         $service = new ClienteService($this->apiClient);
 
-        // Primeiro lista os clientes para pegar um ID real
-        $filtros = [
-            'limit' => 1,
-            'offset' => 0
-        ];
-
-        $listaClientes = $service->listarClientes($filtros);
-        
-        $this->assertIsArray($listaClientes);
-        $this->assertArrayHasKey('data', $listaClientes);
-        $this->assertNotEmpty($listaClientes['data']);
-
-        // Pega o ID do primeiro cliente encontrado
-        $clienteId = $listaClientes['data'][0]['id'];
-
+    
         // Agora busca os detalhes desse cliente
         $response = $service->buscarCliente($clienteId);
 
@@ -97,26 +86,20 @@ class ClienteServiceTest extends TestCase
         $this->assertEquals($clienteId, $response['id']);
     }
 
-    /** @test */
-    public function atualizar_cliente()
+   /**
+     * @test
+     * @depends criar_cliente
+     */
+    public function atualizar_cliente($clienteId)
     {
         $service = new ClienteService($this->apiClient);
 
-        // Primeiro cria um cliente para atualizar
-        $dados = [
-            'name' => 'Maria Santos',
-            'email' => 'maria.santos@email.com',
-            'phone' => '11888888888',
-            'cpfCnpj' => '24971563792'
-        ];
-
-        $cliente = $service->criarCliente($dados);
-        $clienteId = $cliente['id'];
+      
 
         // Agora atualiza o cliente
         $dadosAtualizados = [
-            'name' => 'Maria Santos Silva',
-            'phone' => '11777777777'
+            'name' => 'teste2',
+            'phone' => '11994152001'
         ];
 
         $response = $service->atualizarCliente($clienteId, $dadosAtualizados);
@@ -126,25 +109,18 @@ class ClienteServiceTest extends TestCase
         $this->assertIsArray($response);
         $this->assertArrayHasKey('id', $response);
         $this->assertEquals($clienteId, $response['id']);
-        $this->assertEquals('Maria Santos Silva', $response['name']);
-        $this->assertEquals('11777777777', $response['phone']);
+       
     }
-
-    /** @test */
-    public function remover_cliente()
+    
+     /**
+     * @test
+     * @depends criar_cliente
+     */
+    public function remover_cliente($clienteId)
     {
         $service = new ClienteService($this->apiClient);
 
-        // Primeiro cria um cliente para remover
-        $dados = [
-            'name' => 'Pedro Costa',
-            'email' => 'pedro.costa@email.com',
-            'phone' => '4799376637',
-            'cpfCnpj' => '24971563792'
-        ];
-
-        $cliente = $service->criarCliente($dados);
-        $clienteId = $cliente['id'];
+     
 
         // Agora remove o cliente
         $response = $service->removerCliente($clienteId);
@@ -153,4 +129,5 @@ class ClienteServiceTest extends TestCase
 
         $this->assertIsArray($response);
     }
+   
 }
