@@ -29,7 +29,7 @@ class ChargeBackServiceTest extends TestCase
 
         $response = $this->chargeBackService->listarChargebacks($filtros);
 
-        dump('RESPOSTA LISTAR CHARGEBACKS:', $response);
+        
 
         $this->assertIsArray($response);
         $this->assertArrayHasKey('data', $response);
