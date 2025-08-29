@@ -16,7 +16,7 @@ use Ds\AssasIntegration\Services\TransacoesPixService;
 use Ds\AssasIntegration\Services\CartaoDeCreditoService;
 use Ds\AssasIntegration\Services\ParcelamentoService;
 use Ds\AssasIntegration\Services\EstornoService;
-use Ds\AssasIntegration\Services\ContaBancariaService;
+
 use Ds\AssasIntegration\Services\LinkDePagamentoService;
 use Ds\AssasIntegration\Services\CheckoutService;
 use Ds\AssasIntegration\Services\SplitsService;
@@ -100,9 +100,7 @@ class AssasIntegrationServiceProvider extends ServiceProvider
             return new EstornoService($app->make(ApiClientService::class));
         });
 
-        $this->app->bind(ContaBancariaService::class, function ($app) {
-            return new ContaBancariaService($app->make(ApiClientService::class));
-        });
+      
 
         $this->app->bind(LinkDePagamentoService::class, function ($app) {
             return new LinkDePagamentoService($app->make(ApiClientService::class));
@@ -196,7 +194,7 @@ class AssasIntegrationServiceProvider extends ServiceProvider
                 $app->make(CartaoDeCreditoService::class),
                 $app->make(ParcelamentoService::class),
                 $app->make(EstornoService::class),
-                $app->make(ContaBancariaService::class),
+             
                 $app->make(LinkDePagamentoService::class),
                 $app->make(CheckoutService::class),
                 $app->make(SplitsService::class),
@@ -234,7 +232,7 @@ class AssasIntegrationServiceProvider extends ServiceProvider
         $this->app->alias(CartaoDeCreditoService::class, 'assas.cartao.credito');
         $this->app->alias(ParcelamentoService::class, 'assas.parcelamento');
         $this->app->alias(EstornoService::class, 'assas.estorno');
-        $this->app->alias(ContaBancariaService::class, 'assas.conta.bancaria');
+      
         $this->app->alias(LinkDePagamentoService::class, 'assas.link.pagamento');
         $this->app->alias(CheckoutService::class, 'assas.checkout');
         $this->app->alias(SplitsService::class, 'assas.splits');

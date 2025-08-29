@@ -17,7 +17,7 @@ class AsaasService
     protected $cartaoCredito;
     protected $parcelamento;
     protected $estorno;
-    protected $contaBancaria;
+   
     protected $linkPagamento;
     protected $checkout;
     protected $splits;
@@ -52,7 +52,7 @@ class AsaasService
         CartaoDeCreditoService $cartaoCredito,
         ParcelamentoService $parcelamento,
         EstornoService $estorno,
-        ContaBancariaService $contaBancaria,
+    
         LinkDePagamentoService $linkPagamento,
         CheckoutService $checkout,
         SplitsService $splits,
@@ -86,7 +86,7 @@ class AsaasService
         $this->cartaoCredito = $cartaoCredito;
         $this->parcelamento = $parcelamento;
         $this->estorno = $estorno;
-        $this->contaBancaria = $contaBancaria;
+      
         $this->linkPagamento = $linkPagamento;
         $this->checkout = $checkout;
         $this->splits = $splits;
@@ -212,14 +212,7 @@ class AsaasService
         return $this->estorno;
     }
 
-    /**
-     * Acessar serviço de contas bancárias
-     */
-    public function contaBancaria(): ContaBancariaService
-    {
-        return $this->contaBancaria;
-    }
-
+ 
     /**
      * Acessar serviço de link de pagamento
      */
